@@ -731,6 +731,32 @@ function init(el, config, opts) {
   });
 }
 
+// src/rich-snippets.ts
+function injectHowTo(data, domain, siteName) {
+  if (document.querySelector("script[data-peasy-snippet]")) return;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `How to use ${data.toolName}`,
+    description: data.description,
+    tool: {
+      "@type": "HowToTool",
+      name: data.toolName
+    },
+    url: `https://${domain}/${data.category}/${data.slug}/`,
+    provider: {
+      "@type": "Organization",
+      name: siteName,
+      url: `https://${domain}`
+    }
+  };
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.setAttribute("data-peasy-snippet", "true");
+  script.textContent = JSON.stringify(jsonLd);
+  document.head.appendChild(script);
+}
+
 // src/widgets/tool-card.ts
 function init2(el, config, opts) {
   const slug = el.dataset.slug;
@@ -746,6 +772,18 @@ function init2(el, config, opts) {
       return;
     }
     const toolUrl = `https://${config.domain}/${data.category.slug}/${data.slug}/`;
+    if (el.dataset.noSnippet !== "true") {
+      injectHowTo(
+        {
+          toolName: data.name,
+          description: data.description || data.tagline,
+          category: data.category.slug,
+          slug: data.slug
+        },
+        config.domain,
+        config.name
+      );
+    }
     root.innerHTML = `
         <style>
           .peasy-tool-card-header {
