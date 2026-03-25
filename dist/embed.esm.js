@@ -2815,6 +2815,93 @@ function init18(el, config, opts) {
   renderResults(10);
 }
 
+// src/web-components.ts
+var EAGER_TYPES = /* @__PURE__ */ new Set(["badge"]);
+function makeWidgetElement(widgetType, renderer, domainAttrs) {
+  const observed2 = [...domainAttrs, "theme", "style-variant", "size", "lang", "track"];
+  return class extends HTMLElement {
+    static get observedAttributes() {
+      return observed2;
+    }
+    connectedCallback() {
+      if (this.shadowRoot) return;
+      this._syncDataAttrs();
+      this._render();
+    }
+    attributeChangedCallback(_name, oldVal, newVal) {
+      if (oldVal === newVal) return;
+      if (!this.shadowRoot) return;
+      const shadow = this.shadowRoot;
+      while (shadow.firstChild) shadow.firstChild.remove();
+      this._syncDataAttrs();
+      this._render();
+    }
+    _render() {
+      const config = define_INJECTED_CONFIG_default;
+      const opts = parseWidgetOptions(this);
+      if (EAGER_TYPES.has(widgetType)) {
+        renderer(this, config, opts);
+      } else {
+        lazyInit(this, () => renderer(this, config, opts));
+      }
+    }
+    /**
+     * Bridge element attributes → data-* attributes so existing renderers
+     * (which read from dataset / getAttribute) work unchanged.
+     */
+    _syncDataAttrs() {
+      const config = define_INJECTED_CONFIG_default;
+      this.setAttribute(config.attribute, widgetType);
+      for (const a of domainAttrs) {
+        const val = this.getAttribute(a);
+        if (val !== null) this.dataset[a] = val;
+      }
+      const styleVariant = this.getAttribute("style-variant");
+      if (styleVariant !== null) this.dataset.style = styleVariant;
+      const theme = this.getAttribute("theme");
+      if (theme !== null) this.dataset.theme = theme;
+      const size = this.getAttribute("size");
+      if (size !== null) this.dataset.size = size;
+      const lang = this.getAttribute("lang");
+      if (lang !== null) this.dataset.lang = lang;
+      const track = this.getAttribute("track");
+      if (track !== null) this.dataset.track = track;
+    }
+  };
+}
+function registerPeasyElements() {
+  if (typeof customElements === "undefined") return;
+  const definitions = [
+    // Layer 1
+    ["peasy-format", "format", init, ["slug"]],
+    ["peasy-tool", "tool", init2, ["slug"]],
+    ["peasy-convert", "convert", init3, ["from", "to"]],
+    ["peasy-compare", "compare", init4, ["a", "b"]],
+    ["peasy-glossary", "glossary", init5, ["slug"]],
+    ["peasy-gallery", "gallery", init6, ["category"]],
+    ["peasy-guide", "guide", init7, ["slug"]],
+    ["peasy-usecase", "usecase", init8, ["slug"]],
+    ["peasy-badge", "badge", init9, ["slug"]],
+    ["peasy-search", "search", init10, ["placeholder"]],
+    // Layer 2
+    ["peasy-interactive", "interactive", init11, ["tool"]],
+    // Layer 3
+    ["peasy-wordcount", "wordcount", init12, []],
+    ["peasy-encode", "encode", init13, []],
+    ["peasy-hash", "hash", init14, []],
+    ["peasy-preview", "preview", init15, []],
+    ["peasy-minify", "minify", init16, []],
+    ["peasy-color", "color", init17, []],
+    ["peasy-ratio", "ratio", init18, []]
+  ];
+  for (const [tagName, widgetType, renderer, attrs] of definitions) {
+    if (!customElements.get(tagName)) {
+      customElements.define(tagName, makeWidgetElement(widgetType, renderer, attrs));
+    }
+  }
+}
+registerPeasyElements();
+
 // src/core.ts
 var RENDERERS = {
   // Layer 1

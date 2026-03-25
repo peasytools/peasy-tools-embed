@@ -1,6 +1,6 @@
 {
   "name": "peasy-tools-embed",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Embed PeasyTools widgets on any website. Lightweight (<8KB gzipped), zero dependencies, Shadow DOM isolation, 3 themes.",
   "main": "dist/embed.min.js",
   "module": "dist/embed.esm.js",
