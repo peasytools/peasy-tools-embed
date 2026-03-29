@@ -1,0 +1,38 @@
+# PeasyTools Embed Widget
+
+> Embeddable PeasyTools widgets for any website. Zero dependencies, Shadow DOM isolation, 4 themes (light/dark/sepia/auto).
+
+## Quick Start
+
+Add to any HTML page:
+- Script: <script src="https://cdn.jsdelivr.net/npm/peasy-tools-embed@1/dist/embed.min.js"></script>
+
+## Links
+
+- Main site: https://peasytools.com
+- Widget docs: https://widget.peasytools.com
+- npm: https://www.npmjs.com/package/peasy-tools-embed
+- GitHub: https://github.com/peasytools/peasy-tools-embed
+- API: https://peasytools.com/developers/
+
+## Peasy Tools Widget Family
+
+- [PeasyPDF Widget](https://widget.peasypdf.com)
+- [PeasyImage Widget](https://widget.peasyimage.com)
+- [PeasyAudio Widget](https://widget.peasyaudio.com)
+- [PeasyText Widget](https://widget.peasytext.com)
+- [PeasyVideo Widget](https://widget.peasyvideo.com)
+- [PeasyCSS Widget](https://widget.peasycss.com)
+- [PeasyDesign Widget](https://widget.peasydesign.com)
+- [PeasyDev Widget](https://widget.peasydev.com)
+- [PeasyFormats Widget](https://widget.peasyformats.com)
+- [PeasyGen Widget](https://widget.peasygen.com)
+- [PeasyMath Widget](https://widget.peasymath.com)
+- [PeasyQR Widget](https://widget.peasyqr.com)
+- [PeasySafe Widget](https://widget.peasysafe.com)
+- [PeasySEO Widget](https://widget.peasyseo.com)
+- [PeasySocial Widget](https://widget.peasysocial.com)
+
+## Part of FYIPedia
+
+Open-source developer tools ecosystem — https://fyipedia.com
