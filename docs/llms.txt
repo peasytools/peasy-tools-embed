@@ -1,21 +1,52 @@
 # PeasyTools Embed Widget
 
-> Embeddable PeasyTools widgets for any website. Zero dependencies, Shadow DOM isolation, 4 themes (light/dark/sepia/auto).
+> File conversion tools. Embeddable widgets for any website. Zero dependencies, Shadow DOM isolation.
 
 ## Quick Start
 
-Add to any HTML page:
-- Script: <script src="https://cdn.jsdelivr.net/npm/peasy-tools-embed@1/dist/embed.min.js"></script>
+```html
+<script src="https://cdn.jsdelivr.net/npm/peasy-tools-embed@1/dist/embed.min.js"></script>
+<div data-peasytools="format" data-slug="example"></div>
+```
+
+## Available Widget Types (8)
+
+- format: `data-peasytools="format"`
+- tool: `data-peasytools="tool"`
+- convert: `data-peasytools="convert"`
+- compare: `data-peasytools="compare"`
+- glossary: `data-peasytools="glossary"`
+- gallery: `data-peasytools="gallery"`
+- guide: `data-peasytools="guide"`
+- search: `data-peasytools="search"`
+
+## Customization
+
+- **Themes**: light, dark, sepia, auto (follows system preference)
+- **Sizes**: compact (280px), default (420px), large (720px)
+- **Styles**: modern, classic
+
+```html
+<div data-peasytools="format" data-slug="example"
+     data-theme="auto" data-size="compact" data-style-variant="modern"></div>
+```
+
+## Integration Methods
+
+1. **Script tag** (recommended): `<script src="https://cdn.jsdelivr.net/npm/peasy-tools-embed@1/dist/embed.min.js"></script>`
+2. **iframe**: `https://peasytools.com/iframe/entity/{slug}/`
+3. **oEmbed**: `https://peasytools.com/oembed?url={page_url}&format=json`
+4. **Badge**: `https://peasytools.com/badge/site.svg`
 
 ## Links
 
 - Main site: https://peasytools.com
 - Widget docs: https://widget.peasytools.com
-- npm: https://www.npmjs.com/package/peasy-tools-embed
-- GitHub: https://github.com/peasytools/peasy-tools-embed
-- API: https://peasytools.com/developers/
+- API documentation: https://peasytools.com/developers/
+- npm package: https://www.npmjs.com/package/peasy-tools-embed
+- GitHub: https://github.com/fyipedia/peasy-tools-embed
 
-## Peasy Tools Widget Family
+## Peasy Tools Widget Network
 
 - [PeasyPDF Widget](https://widget.peasypdf.com)
 - [PeasyImage Widget](https://widget.peasyimage.com)
