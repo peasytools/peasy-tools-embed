@@ -464,14 +464,14 @@ function renderError(container, message, config) {
   container.innerHTML = `
     <div class="peasy-error">
       <p>${esc(message)}</p>
-      <a href="https://${config.domain}" target="_blank" rel="noopener">
+      <a href="https://${config.domain}" target="_blank" rel="nofollow noopener">
         Visit ${esc(config.name)} ${externalLinkIcon}
       </a>
     </div>
   `;
 }
 function poweredByHTML(config) {
-  return `<span class="peasy-powered">Powered by <a href="https://${config.domain}" target="_blank" rel="noopener">${esc(config.name)}</a></span>`;
+  return `<span class="peasy-powered">Powered by <a href="https://${config.domain}" target="_blank" rel="nofollow noopener">${esc(config.name)}</a></span>`;
 }
 function bindCopyButton(btn, text) {
   btn.onclick = () => {
@@ -722,7 +722,7 @@ function init(el, config, opts) {
           </div>
         ` : ""}
         <div class="peasy-actions">
-          <a class="peasy-link" href="https://${config.domain}/formats/${slug}/" target="_blank" rel="noopener">
+          <a class="peasy-link" href="https://${config.domain}/formats/${slug}/" target="_blank" rel="nofollow noopener">
             ${esc(data.full_name)} format guide on ${esc(config.name)} ${externalLinkIcon}
           </a>
         </div>
@@ -829,7 +829,7 @@ function init2(el, config, opts) {
         ${data.tagline ? `<p class="peasy-subtitle" style="padding:8px 16px 0;margin:0;">${esc(data.tagline)}</p>` : ""}
         ${data.description ? `<div class="peasy-tool-card-desc">${esc(data.description)}</div>` : ""}
         <div class="peasy-actions">
-          <a class="peasy-btn" href="${toolUrl}" target="_blank" rel="noopener">
+          <a class="peasy-btn" href="${toolUrl}" target="_blank" rel="nofollow noopener">
             Try ${esc(data.name)} on ${esc(config.name)} ${externalLinkIcon}
           </a>
         </div>
@@ -951,13 +951,13 @@ function init3(el, config, opts) {
           ${data.recommended_tool ? `
             <div class="peasy-conv-prop-row">
               <span class="peasy-conv-prop-label">Recommended tool</span>
-              <a class="peasy-link" href="https://${config.domain}/search/?q=${encodeURIComponent(data.recommended_tool.name)}" target="_blank" rel="noopener">${esc(data.recommended_tool.name)}</a>
+              <a class="peasy-link" href="https://${config.domain}/search/?q=${encodeURIComponent(data.recommended_tool.name)}" target="_blank" rel="nofollow noopener">${esc(data.recommended_tool.name)}</a>
             </div>
           ` : ""}
         </div>
         ${data.description ? `<div class="peasy-conv-desc">${esc(data.description)}</div>` : ""}
         <div class="peasy-actions">
-          <a class="peasy-link" href="https://${config.domain}/conversions/${slug}/" target="_blank" rel="noopener">
+          <a class="peasy-link" href="https://${config.domain}/conversions/${slug}/" target="_blank" rel="nofollow noopener">
             ${esc(data.source_format.extension.toUpperCase())} to ${esc(data.target_format.extension.toUpperCase())} conversion guide on ${esc(config.name)} ${externalLinkIcon}
           </a>
         </div>
@@ -1106,10 +1106,10 @@ function init4(el, config, opts) {
         </tbody>
       </table>
       <div class="peasy-compare-links">
-        <a class="peasy-link" href="https://${config.domain}/formats/${slugA}/" target="_blank" rel="noopener">
+        <a class="peasy-link" href="https://${config.domain}/formats/${slugA}/" target="_blank" rel="nofollow noopener">
           ${esc(fmtA.full_name)} format guide ${externalLinkIcon}
         </a>
-        <a class="peasy-link" href="https://${config.domain}/formats/${slugB}/" target="_blank" rel="noopener">
+        <a class="peasy-link" href="https://${config.domain}/formats/${slugB}/" target="_blank" rel="nofollow noopener">
           ${esc(fmtB.full_name)} format guide ${externalLinkIcon}
         </a>
       </div>
@@ -1199,7 +1199,7 @@ function init5(el, config, opts) {
       popup.innerHTML = `
           <div class="peasy-glossary-popup-term">${esc(data.term)}</div>
           <div class="peasy-glossary-popup-def">${esc(data.explanation_simple || data.definition)}</div>
-          <a class="peasy-glossary-popup-link" href="https://${config.domain}/glossary/${encodeURIComponent(slug)}/" target="_blank" rel="noopener">
+          <a class="peasy-glossary-popup-link" href="https://${config.domain}/glossary/${encodeURIComponent(slug)}/" target="_blank" rel="nofollow noopener">
             Learn more about ${esc(data.term)} on ${esc(config.name)}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>
@@ -1216,7 +1216,7 @@ function init5(el, config, opts) {
       renderError(root, "Could not load glossary term.", config);
       return;
     }
-    const relatedLinks = (data.related_terms || []).slice(0, 4).map((t) => `<a class="peasy-link" href="https://${config.domain}/glossary/${encodeURIComponent(t.slug)}/" target="_blank" rel="noopener">${esc(t.term)}</a>`).join("");
+    const relatedLinks = (data.related_terms || []).slice(0, 4).map((t) => `<a class="peasy-link" href="https://${config.domain}/glossary/${encodeURIComponent(t.slug)}/" target="_blank" rel="nofollow noopener">${esc(t.term)}</a>`).join("");
     root.innerHTML = `
         <style>
           .peasy-glossary-header {
@@ -1279,7 +1279,7 @@ function init5(el, config, opts) {
           </div>
         ` : ""}
         <div class="peasy-actions">
-          <a class="peasy-link" href="https://${config.domain}/glossary/${slug}/" target="_blank" rel="noopener">
+          <a class="peasy-link" href="https://${config.domain}/glossary/${slug}/" target="_blank" rel="nofollow noopener">
             ${esc(data.term)} \u2014 full glossary entry on ${esc(config.name)} ${externalLinkIcon}
           </a>
         </div>
@@ -1306,7 +1306,7 @@ function init6(el, config, opts) {
       const url = `https://${config.domain}/${tool.category.slug}/${tool.slug}/`;
       const tagline = tool.tagline ? tool.tagline.length > 55 ? tool.tagline.substring(0, 55) + "\u2026" : tool.tagline : "";
       return `
-          <a class="peasy-gallery-tile" href="${url}" target="_blank" rel="noopener" title="${esc(tool.name)}">
+          <a class="peasy-gallery-tile" href="${url}" target="_blank" rel="nofollow noopener" title="${esc(tool.name)}">
             <div class="peasy-gallery-tile-icon">${esc(tool.icon || "\u{1F527}")}</div>
             <div class="peasy-gallery-tile-name">${esc(tool.name)}</div>
             ${tagline ? `<div class="peasy-gallery-tile-tagline">${esc(tagline)}</div>` : ""}
@@ -1378,7 +1378,7 @@ function init6(el, config, opts) {
           ${toolTiles}
         </div>
         <div class="peasy-gallery-footer">
-          <a class="peasy-link" href="${allToolsUrl}" target="_blank" rel="noopener">
+          <a class="peasy-link" href="${allToolsUrl}" target="_blank" rel="nofollow noopener">
             Browse all ${resp.count} tools on ${esc(config.name)} ${externalLinkIcon}
           </a>
         </div>
@@ -1476,7 +1476,7 @@ function init7(el, config, opts) {
           </div>
         ` : ""}
         <div class="peasy-actions">
-          <a class="peasy-link" href="https://${config.domain}/guides/${slug}/" target="_blank" rel="noopener">
+          <a class="peasy-link" href="https://${config.domain}/guides/${slug}/" target="_blank" rel="nofollow noopener">
             Read full guide on ${esc(config.name)} ${externalLinkIcon}
           </a>
         </div>
@@ -1502,7 +1502,7 @@ function init8(el, config, opts) {
     const toolsHtml = data.tools && data.tools.length > 0 ? `<div class="peasy-usecase-tools">
             <span class="peasy-usecase-tools-label">Tools:</span>
             ${data.tools.slice(0, 4).map(
-      (t) => `<a class="peasy-link" href="https://${config.domain}/search/?q=${encodeURIComponent(t.name)}" target="_blank" rel="noopener">${esc(t.name)}</a>`
+      (t) => `<a class="peasy-link" href="https://${config.domain}/search/?q=${encodeURIComponent(t.name)}" target="_blank" rel="nofollow noopener">${esc(t.name)}</a>`
     ).join("")}
           </div>` : "";
     root.innerHTML = `
@@ -1544,7 +1544,7 @@ function init8(el, config, opts) {
         ${data.description ? `<div class="peasy-usecase-desc">${esc(data.description)}</div>` : ""}
         ${toolsHtml}
         <div class="peasy-actions">
-          <a class="peasy-link" href="https://${config.domain}/use-cases/${slug}/" target="_blank" rel="noopener">
+          <a class="peasy-link" href="https://${config.domain}/use-cases/${slug}/" target="_blank" rel="nofollow noopener">
             ${esc(data.name)} use case guide on ${esc(config.name)} ${externalLinkIcon}
           </a>
         </div>
@@ -1632,7 +1632,7 @@ function init9(el, config, opts) {
     const wrapper = document.createElement("div");
     wrapper.style.cssText = "position:relative;display:inline-block;";
     wrapper.innerHTML = `
-        <a class="peasy-badge-link" href="https://${config.domain}/formats/${encodeURIComponent(slug)}/" target="_blank" rel="noopener">
+        <a class="peasy-badge-link" href="https://${config.domain}/formats/${encodeURIComponent(slug)}/" target="_blank" rel="nofollow noopener">
           <span>${esc(data.extension.toUpperCase())}</span>
           <span style="opacity:0.5;">\u25AA</span>
           <span>${esc(data.category)}</span>
@@ -1801,7 +1801,7 @@ function init10(el, config, opts) {
       const url = getResultUrl(config, r);
       const desc = r.description ? r.description.length > 100 ? r.description.substring(0, 100) + "\u2026" : r.description : "";
       return `
-        <a class="peasy-search-result-item" href="${url}" target="_blank" rel="noopener" data-index="${i}">
+        <a class="peasy-search-result-item" href="${url}" target="_blank" rel="nofollow noopener" data-index="${i}">
           <span class="peasy-search-result-icon">${getResultIcon(r.type)}</span>
           <div>
             <div class="peasy-search-result-name">${esc(r.name)}</div>
@@ -1946,7 +1946,7 @@ function init11(el, config, opts) {
   const footer = document.createElement("div");
   footer.className = "peasy-iframe-footer";
   footer.innerHTML = `
-    <a class="peasy-link" href="${toolUrl}" target="_blank" rel="noopener" style="font-size:12px;font-weight:500;color:${config.accent};text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
+    <a class="peasy-link" href="${toolUrl}" target="_blank" rel="nofollow noopener" style="font-size:12px;font-weight:500;color:${config.accent};text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
       Open ${esc(slug.split("/").pop() || "tool")} in full view on ${esc(config.name)} ${externalLinkIcon}
     </a>
     ${poweredByHTML(config)}
